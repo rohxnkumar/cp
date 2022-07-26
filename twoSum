@@ -1,0 +1,11 @@
+
+two Sum equal to target
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        arrMap = {}
+        for i,n in enumerate(nums):
+            diff = target - n
+            if diff in arrMap:
+                return (i,arrMap[diff])
+            arrMap[n] = i
+        
