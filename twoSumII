@@ -1,0 +1,42 @@
+
+TWO SUM II
+
+
+#best solution 0(n) using two pointer
+class Solution:
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        left , right = 0 , len(numbers)-1
+        
+        while left < right:
+            if numbers[left] + numbers[right] > target :
+                right -= 1
+            elif numbers[left] + numbers[right] < target :
+                left += 1
+            else:
+                return (left+1,right+1)
+
+
+
+# O(n^2)
+class Solution:
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        for i in range(len(numbers)):
+            for j in range(i+1,len(numbers)):
+                if (numbers[i] + numbers[j]) == target :
+                    if i < j :
+                        return (i+1,j+1)
+                        
+                        
+                        
+#Using hash map
+
+class Solution:
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        arrMap = {}
+        for i,n in enumerate(numbers):
+            diff = target - n
+            if diff in arrMap:
+                if arrMap[diff]<i:
+                    return (arrMap[diff]+1,i+1)
+            arrMap[n] = i
+                    
