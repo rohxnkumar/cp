@@ -1,0 +1,290 @@
+Merge two sorted arrays
+
+Time Complexity : O(n1 + n2) 
+Auxiliary Space : O(n1 + n2)
+
+def mergetwoSortedarray(nums1,nums2):
+    n1 = len(nums1)
+    n2 = len(nums2)
+    num3 = [None] * (n1+n2)
+    i = 0
+    j = 0
+    k = 0
+    while i < n1 and j <n2 :
+        if nums1[i] < nums2[j]:
+            num3[k] = nums1[i]
+            i += 1
+            k += 1
+        else:
+            num3[k] = nums2[j]
+            j += 1
+            k += 1
+            
+    while i < n1:
+        num3[k] = nums1[i]
+        i += 1
+        k += 1
+    while j < n2:
+        num3[k] = nums2[j]
+        j += 1
+        k += 1
+    return num3        
+    
+     
+arr1 = [1, 3, 5, 7]
+arr2 = [2, 4, 6, 8]
+print(mergetwoSortedarray(arr1, arr2))
+
+##################################################################################################
+
+
+Remove Duplicates from Sorted Array
+
+Time Complexity : O(n) 
+Space : O(1)
+
+def removeduplicateinSorted(nums1):
+    l = 1
+    for r in range(1,len(nums1)):
+        if nums1[r] != nums1[r-1]:
+            nums1[l] = nums1[r]
+            l += 1
+    return nums1[:l]        
+    
+     
+arr1 = [0,0,1,1,1,2,2,3,3,4]
+print(removeduplicateinSorted(arr1))
+
+##################################################################################################
+ 
+Counting frequencies of array elements
+
+Time Complexity : O(n) 
+Space : O(n)
+
+def countFreq(nums1):
+    freq = {}
+    for i in nums1:
+        if i in freq:
+            freq[i] = freq[i] + 1
+        else:
+            freq[i] = 1
+    for key,values in freq.items():
+        print(key,values)
+    return freq        
+    
+     
+arr1 = [0,0,1,1,1,2,2,3,3,4]
+print(countFreq(arr1))
+##################################################################################################
+ 
+Two Sum
+
+Time Complexity: O(n)
+Space Complexity: O(n)
+
+def twoSum(nums1,target):
+    freq = {}
+    for i in range(len(nums1)):
+        if nums1[i] in freq:
+            return (i,freq[nums1[i]])
+        freq[target - nums1[i]] = i
+     
+arr1 = [3,2,4]
+target = 6
+print(twoSum(arr1,target))
+
+##################################################################################################
+
+Find the minimum and maximum value in an array
+
+Time Complexity: O(n)
+Space Complexity: O(1)
+
+def maxMin(nums1):
+    maxs = nums1[0]
+    mins = nums1[0]
+    for i in range(len(nums1)):
+        if nums1[i] > maxs:
+            maxs = nums1[i]
+        elif nums1[i] < mins:
+            mins = nums1[i]
+            
+    return (maxs,mins)
+     
+arr1 = [3,2,4,2,6,8,9,1,7,12]
+print(maxMin(arr1))
+
+##################################################################################################
+
+Remove Element
+
+Time Complexity: O(n)
+Space Complexity: O(1)
+
+def removeElement(nums1,val):
+    l = 0
+    for r in range(len(nums1)):
+        if nums1[r] != val:
+            nums1[l] = nums1[r]
+            l += 1
+    nums1 = nums1[:l]
+    return nums1
+     
+arr1 = [3,2,4,2,8,6,8,9,1,7,12]
+val = 8
+print(removeElement(arr1,val))
+
+##################################################################################################
+
+Search insert position of K in a sorted array
+
+
+Time Complexity: O(N)
+Auxiliary Space: O(1)
+
+def searchElement(nums1,val):
+    for i in range(len(nums1)):
+        if nums1[i] == val:
+            return i
+        else:
+            if nums1[i] > val:
+                return i
+     
+arr1 = [1, 3, 5, 6]
+val = 2
+print(searchElement(arr1,val))
+
+##################################################################################################
+
+Maximum Subarray
+
+Time Complexity: O(N)
+Auxiliary Space: O(1)
+
+def maximumSubarray(nums1):
+    maxSum = nums1[0]
+    curSum = 0
+    for i in nums1:
+        if curSum < 0:
+            curSum = 0
+        curSum += i 
+        maxSum = max(curSum,maxSum)
+    return maxSum
+     
+arr1 = [5,4,-1,7,8]
+print(maximumSubarray(arr1))
+
+##################################################################################################
+
+Single Number
+
+Time Complexity: O(n)
+Space Complexity: O(n)
+
+def singleNumer(nums1):
+    freq = {}
+    for i in nums1:
+        if i in freq:
+            freq[i] = freq[i] + 1
+        else:
+            freq[i] = 1
+            
+    for key,values in freq.items():
+        if values == 1:
+            return key
+        
+
+arr1 = [2,1,5,3,1,5,2]
+print(singleNumer(arr1))
+
+
+##################################################################################################
+Contains Duplicates
+
+
+Time Complexity: O(n)
+Space Complexity: O(1)
+
+def containDuplicate(nums1):
+    cset = set()
+    for i in nums1:
+        if i in cset:
+            return True
+        cset.add(i)
+    return False
+
+arr1 = [2,1,5,3,1]
+print(containDuplicate(arr1))
+
+Time Complexity: O(n)
+Space Complexity: O(n)
+
+def containDuplicate(nums1):
+    freq = {}
+    for i in nums1:
+        if i in freq:
+            freq[i] = freq[i] + 1
+        else:
+            freq[i] = 1
+            
+    for key,values in freq.items():
+        if values > 1:
+            return True
+    return False
+        
+
+arr1 = [2,1,5,3]
+print(containDuplicate(arr1))
+
+##################################################################################################
+
+Third largest element in an array of distinct elements
+
+Time Complexity: O(n)
+Space Complexity: O(1)
+
+def thirdlargest(nums1):
+    firstlargest = nums1[0]
+    
+    for i in range(len(nums1)):
+        if nums1[i] > firstlargest:
+            firstlargest = nums1[i]
+            
+    seclargest = nums1[0]
+    for i in range(len(nums1)):
+        if nums1[i] > seclargest and nums1[i] < firstlargest :
+            seclargest = nums1[i]
+            
+    thirdlargest = nums1[0]
+    for i in range(len(nums1)):
+        if nums1[i] > thirdlargest and nums1[i] < seclargest :
+            thirdlargest = nums1[i]
+ 
+    return thirdlargest
+        
+
+arr1 = [12, 13, 1,10, 34, 16]
+print(thirdlargest(arr1))
+
+##################################################################################################
+Count Odd Even
+
+Time Complexity: O(n)
+Space Complexity: O(1)
+
+def thirdlargest(nums1):
+    oddcount = 0
+    evencount = 0
+    for i in range(len(nums1)):
+        if nums1[i] %2 == 0:
+            evencount += 1
+        else:
+            oddcount += 1
+
+ 
+    return (evencount,oddcount)
+        
+
+arr1 = [12, 13, 1,10, 34, 16]
+print(thirdlargest(arr1))
